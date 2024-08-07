@@ -1,4 +1,3 @@
-import 'package:adsmanagement/data/providers/ad_provider.dart';
 import 'package:adsmanagement/data/repositories/ad_repository.dart';
 import 'package:adsmanagement/data/services/ad_service.dart';
 import 'package:adsmanagement/shared/bloc/appbloc.dart';
@@ -13,8 +12,7 @@ Future<void> main() async {
   Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp();
   final adRepository = AdRepository();
-  final adProvider = AdProvider(adRepository);
-  final adService = AdService(adProvider);
+  final adService = AdService(adRepository);
 
   runApp( MyApp(adService: adService,
   ));

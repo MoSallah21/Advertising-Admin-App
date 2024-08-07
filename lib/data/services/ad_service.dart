@@ -1,25 +1,24 @@
-// ad_service.dart
+import 'package:adsmanagement/data/repositories/ad_repository.dart';
 import 'package:adsmanagement/models/ads/ads.dart';
-import 'package:adsmanagement/data/providers/ad_provider.dart';
 import 'dart:io';
 
 class AdService {
-  final AdProvider _adProvider;
+  final AdRepository _adRepository;
 
-  AdService(this._adProvider);
+  AdService(this._adRepository);
 
   // Get ads
   Stream<List<AdModel>> getAds() {
-    return _adProvider.getAds();
+    return _adRepository.getAds();
   }
 
   // Add ad
   Future<void> addAd(AdModel model, File image) {
-    return _adProvider.addAd(model, image);
+    return _adRepository.addAd(model, image);
   }
 
   // Delete ad
   Future<void> deleteAd(String? adId) {
-    return _adProvider.deleteAd(adId);
+    return _adRepository.deleteAd(adId);
   }
 }

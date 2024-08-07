@@ -1,5 +1,6 @@
 // app_bloc.dart
 import 'dart:convert';
+import 'package:adsmanagement/data/services/ad_service.dart';
 import 'package:adsmanagement/models/category/category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,9 @@ import 'dart:io';
 import 'package:adsmanagement/data/repositories/ad_repository.dart';
 
 class AppBloc extends Cubit<AppState> {
-  final AdRepository _adRepository;
+  final AdService _adService;
 
-  AppBloc(this._adRepository) : super(AppInitState());
+  AppBloc(this._adService) : super(AppInitState());
 
   static AppBloc get(context) => BlocProvider.of(context);
 
@@ -80,7 +81,7 @@ class AppBloc extends Cubit<AppState> {
       endDate: endDate,
       vip: vip, image: '',
     );
-    _adRepository.addAd(model, image!).then((_) {
+    _adService.addAd(model, image!).then((_) {
       emit(AppAddAdSuccessState());
     }).catchError((onError) {
       emit(AppAddAdErrorState());
@@ -89,11 +90,11 @@ class AppBloc extends Cubit<AppState> {
 
   DateTime selectedDate = DateTime.now().add(Duration(days: 1));
   Stream<List<AdModel>> getAds() {
-    return _adRepository.getAds();
+    return _adService.getAds();
   }
 
   void deleteAd(String? postId) {
-    _adRepository.deleteAd(postId).then((_) {
+    _adService.deleteAd(postId).then((_) {
       emit(AppDeleteAdSuccessState());
     }).catchError((error) {
       emit(AppDeleteAdErrorState());

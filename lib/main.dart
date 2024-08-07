@@ -12,24 +12,24 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp();
-  final adProvider = AdProvider();
+  final adRepository = AdRepository();
+  final adProvider = AdProvider(adRepository);
   final adService = AdService(adProvider);
-  final adRepository = AdRepository(adService);
 
-  runApp( MyApp(adRepository: adRepository,
+  runApp( MyApp(adService: adService,
   ));
 }
 
 class MyApp extends StatelessWidget {
 
-  final AdRepository adRepository;
+  final AdService adService;
 
-  const MyApp({super.key, required this.adRepository});
+  const MyApp({super.key, required this.adService});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context)=>AppBloc(adRepository),
+      create: (BuildContext context)=>AppBloc(adService),
       child: MaterialApp(
         theme: ThemeData(appBarTheme: AppBarTheme(
           color: Colors.black,

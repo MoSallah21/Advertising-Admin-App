@@ -1,7 +1,7 @@
+import 'package:adsmanagement/core/vaild/vaild.dart';
 import 'package:adsmanagement/shared/bloc/appbloc.dart';
 import 'package:adsmanagement/shared/bloc/appstatus.dart';
 import 'package:adsmanagement/shared/componants/components.dart';
-import 'package:adsmanagement/shared/vaild/vaild.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -44,6 +44,7 @@ dependencies:
   rflutter_alert: ^2.0.7
   pull_down_button: ^0.7.0
   http: ^0.13.5
+  equatable: ^2.0.5
 
   # firbase
   firebase_core: ^2.4.0

@@ -1,8 +1,6 @@
-// app_bloc.dart
 import 'dart:convert';
 import 'package:adsmanagement/data/services/ad_service.dart';
-import 'package:adsmanagement/models/category/category.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:adsmanagement/data/services/category_service.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:adsmanagement/models/ads/ads.dart';
@@ -11,12 +9,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'appstatus.dart';
 import 'dart:io';
-import 'package:adsmanagement/data/repositories/ad_repository.dart';
 
 class AppBloc extends Cubit<AppState> {
   final AdService _adService;
+  final CategoryService _categoryService;
 
-  AppBloc(this._adService) : super(AppInitState());
+  AppBloc(this._adService,this._categoryService) : super(AppInitState());
 
   static AppBloc get(context) => BlocProvider.of(context);
 
@@ -146,40 +144,17 @@ class AppBloc extends Cubit<AppState> {
     }
   }
 
-  void addCategory({
-    required String name,
-  }) {
+  void addCategory({required String name, required String imagePath}) {
     emit(AppAddCategoryLoadingState());
-    final storageRef = firebase_storage.FirebaseStorage.instance.ref().child('category/${Uri.file(categoryImage!.path).pathSegments.last}');
-    storageRef.putFile(categoryImage!).then((p0) {
-      p0.ref.getDownloadURL().then((value) {
-        CategoryModel model = CategoryModel(
-          title: name,
-          image: value,
-        );
-        FirebaseFirestore.instance.collection('categories').get().then((QuerySnapshot snapshot) {
-          int nextCategoryId = 1;
-          if (snapshot.size > 0) {
-            int maxCategoryId = snapshot.docs.map((doc) => doc['categoryId']).fold(0, (max, categoryId) => categoryId > max ? categoryId : max);
-            nextCategoryId = maxCategoryId + 1;
-          }
-          model.categoryId = nextCategoryId;
-          FirebaseFirestore.instance.collection('categories').add(model.toMap()).then((DocumentReference documentRef) {
-            documentRef.update({'categoryId': nextCategoryId});
-            String catUid = documentRef.id;
-            model.categoryUid = catUid;
-            documentRef.update({'categoryUid': catUid});
-            emit(AppAddCategorySuccessState());
-          }).catchError((error) {});
-        });
-      });
-    }).catchError((onError) {
+    _categoryService.addCategory(name: name, imagePath: imagePath).then((_) {
+      emit(AppAddCategorySuccessState());
+    }).catchError((error) {
       emit(AppAddCategoryErrorState());
     });
   }
 
-  void deleteCat(String? cattUid) {
-    FirebaseFirestore.instance.collection('categories').doc(cattUid).delete().then((value) {
+  void deleteCat(String? categoryUid) {
+    _categoryService.deleteCategory(categoryUid).then((_) {
       emit(AppDeleteCatSuccessState());
     }).catchError((error) {
       emit(AppDeleteCatErrorState());

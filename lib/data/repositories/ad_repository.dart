@@ -21,7 +21,7 @@ class AdRepository {
     final imageUrl = await uploadTask.ref.getDownloadURL();
     model.image = imageUrl;
 
-    final adDoc = await _firestore.collection('ads').add(model.toMap());
+    final adDoc = await _firestore.collection('ads').add(model.toJson());
     final adId = adDoc.id;
     model.adId = adId;
     await adDoc.update({'adId': adId});

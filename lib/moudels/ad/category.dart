@@ -1,12 +1,13 @@
+// add_category.dart
 import 'package:adsmanagement/shared/bloc/appbloc.dart';
 import 'package:adsmanagement/shared/bloc/appstatus.dart';
 import 'package:adsmanagement/shared/componants/components.dart';
 import 'package:adsmanagement/shared/vaild/vaild.dart';
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:iconly/iconly.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 
 class AddCategory extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
@@ -17,16 +18,17 @@ class AddCategory extends StatelessWidget {
     return BlocConsumer<AppBloc, AppState>(
       listener: (context, state) {
         if (state is AppAddCategorySuccessState) {
-          titleController.text='';
-          AppBloc.get(context).categoryImage=null;
-
-
+          titleController.text = '';
+          AppBloc.get(context).categoryImage = null;
         }
       },
       builder: (context, state) {
-        var cubit=AppBloc.get(context);
+        var cubit = AppBloc.get(context);
         return Scaffold(
-          appBar: AppBar(title: Text('Add Category'),centerTitle: true,),
+          appBar: AppBar(
+            title: Text('Add Category'),
+            centerTitle: true,
+          ),
           body: Container(
             width: double.infinity,
             height: double.infinity,
@@ -47,7 +49,7 @@ class AddCategory extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            'add category',
+                            'Add Category',
                             style: TextStyle(
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
@@ -60,18 +62,13 @@ class AddCategory extends StatelessWidget {
                             controller: titleController,
                             inputType: TextInputType.name,
                             prefix: IconlyLight.info_circle,
-                            lable: 'Category name',
-                            validator:(val){
-                              return validInput(
-                                  val:val!,
-                                  min:3,
-                                  max:25);
-                            } ,
+                            validator: (val) {
+                              return validInput(val: val!, min: 3, max: 25);
+                            }, lable: 'Category name',
                           ),
                           SizedBox(
                             height: 20.0,
                           ),
-
                           Row(
                             children: [
                               GestureDetector(
@@ -91,7 +88,6 @@ class AddCategory extends StatelessWidget {
                                   ],
                                 ),
                               ),
-
                             ],
                           ),
                           SizedBox(
@@ -111,15 +107,15 @@ class AddCategory extends StatelessWidget {
                                   width: 300,
                                   child: MaterialButton(
                                     onPressed: () {
-                                      if (formKey.currentState!.validate()
-                                          &&cubit.categoryImage!=null
-                                      ) {
+                                      if (formKey.currentState!.validate() &&
+                                          cubit.categoryImage != null) {
                                         cubit.addCategory(
-                                            name: titleController.text,
-                                            );
+                                          name: titleController.text,
+                                          imagePath: cubit.categoryImage!.path,
+                                        );
+                                      } else {
+                                        print('Please select an image.');
                                       }
-                                      else
-                                        print('object');
                                     },
                                     child: const Text(
                                       'Add',
@@ -134,9 +130,10 @@ class AddCategory extends StatelessWidget {
                               ],
                             ),
                             fallback: (context) => Center(
-                                child: CircularProgressIndicator(
-                                  color: HexColor('#69A88D'),
-                                )),
+                              child: CircularProgressIndicator(
+                                color: HexColor('#69A88D'),
+                              ),
+                            ),
                           ),
                         ],
                       ),

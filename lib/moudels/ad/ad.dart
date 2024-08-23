@@ -5,6 +5,7 @@ import 'package:adsmanagement/shared/vaild/vaild.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:iconly/iconly.dart';
@@ -13,9 +14,9 @@ import 'timepicker.dart';
 
 
 class AddAdvertising extends StatelessWidget {
-  var formKey = GlobalKey<FormState>();
-  var nameController = TextEditingController();
-  var numController = TextEditingController();
+ final GlobalKey formKey = GlobalKey<FormState>();
+ final TextEditingController nameController = TextEditingController();
+ final TextEditingController numController = TextEditingController();
   String value='Stores';
 
   @override

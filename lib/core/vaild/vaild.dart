@@ -1,4 +1,7 @@
-import 'package:adsmanagement/shared/constants/messages.dart';
+
+
+
+import 'package:adphotos/core/strings/messages.dart';
 
 validInput({ required String val, required int min, required int max}){
   if(val.isEmpty)

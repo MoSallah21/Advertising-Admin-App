@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
 class Ad extends Equatable{
-final  String? adId;
+  String? adId;
 final  String? userNum;
 final  String? shopName;
 final  String? startDate;
 final  String? endDate;
 final String? catName;
-final  String? image;
+  String? image;
 final  bool?vip;
 // final  List<dynamic> likes;
 

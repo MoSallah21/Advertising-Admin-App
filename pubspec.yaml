@@ -45,6 +45,9 @@ dependencies:
   pull_down_button: ^0.7.0
   http: ^0.13.5
   equatable: ^2.0.5
+  get_it: ^7.7.0
+  shared_preferences: ^2.0.15
+  dartz: ^0.10.1
 
   # firbase
   firebase_core: ^2.4.0
@@ -52,6 +55,7 @@ dependencies:
   cloud_firestore: ^4.0.5
   firebase_storage: ^11.0.11
   firebase_messaging: ^14.5.0
+  internet_connection_checker: 1.0.0+1
 
 
 dev_dependencies:

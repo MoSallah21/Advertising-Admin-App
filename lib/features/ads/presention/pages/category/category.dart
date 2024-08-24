@@ -1,8 +1,9 @@
 // add_category.dart
+import 'package:adsmanagement/core/vaild/vaild.dart';
+import 'package:adsmanagement/features/ads/presention/widgets/form_widget.dart';
 import 'package:adsmanagement/shared/bloc/appbloc.dart';
 import 'package:adsmanagement/shared/bloc/appstatus.dart';
-import 'package:adsmanagement/shared/componants/components.dart';
-import 'package:adsmanagement/shared/vaild/vaild.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -10,8 +11,8 @@ import 'package:iconly/iconly.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 
 class AddCategory extends StatelessWidget {
-  var formKey = GlobalKey<FormState>();
-  var titleController = TextEditingController();
+ final  formKey = GlobalKey<FormState>();
+ final  TextEditingController titleController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +59,13 @@ class AddCategory extends StatelessWidget {
                           SizedBox(
                             height: 20.0,
                           ),
-                          defaultTextForm(
+                          FormWidget(
                             controller: titleController,
                             inputType: TextInputType.name,
                             prefix: IconlyLight.info_circle,
                             validator: (val) {
                               return validInput(val: val!, min: 3, max: 25);
-                            }, lable: 'Category name',
+                            }, label: 'Category name',
                           ),
                           SizedBox(
                             height: 20.0,

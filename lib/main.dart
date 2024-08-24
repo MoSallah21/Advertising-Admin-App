@@ -1,9 +1,9 @@
+import 'package:adsmanagement/core/bloc_observer.dart';
 import 'package:adsmanagement/data/repositories/ad_repository.dart';
 import 'package:adsmanagement/data/repositories/category_repository.dart';
 import 'package:adsmanagement/data/services/ad_service.dart';
 import 'package:adsmanagement/data/services/category_service.dart';
 import 'package:adsmanagement/shared/bloc/appbloc.dart';
-import 'package:adsmanagement/shared/constants/bloc_observer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';

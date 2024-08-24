@@ -1,27 +1,27 @@
 import 'dart:io';
 
 import 'package:adsmanagement/features/ads/data/models/ad.dart';
+import 'package:adsmanagement/features/cetegories/data/models/category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import '../../../../../core/errors/exception.dart';
 
-abstract class AdRemoteDatasource{
-  Future<List<AdModel>> getAllAds(String catName);
+abstract class CategoryRemoteDatasource{
+  Future<List<CategoryModel>> getAllCategories();
   // Future<Unit> updateLike(AdModel model, String adId);
-  Future<Unit> deleteAd(String adId);
-  Future<Unit> addAd(AdModel model, File image);
+  Future<Unit> deleteCategory(String catId);
+  Future<Unit> addCategory(CategoryModel model, File image);
 }
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-class AdRemoteDatasourceImpl implements AdRemoteDatasource{
+class CategoryRemoteDatasourceImpl implements CategoryRemoteDatasource{
   @override
 
-  Future<List<AdModel>> getAllAds(String catName) async{
+  Future<List<AdModel>> getAllCategories() async{
     try {
       final querySnapshot = await _firestore
           .collection('ads')
-          .where('catName', isEqualTo: catName)
           .orderBy('startDate', descending: true)
           .get();
       if (querySnapshot.docs.isNotEmpty) {

@@ -1,7 +1,7 @@
 import 'package:adsmanagement/core/vaild/vaild.dart';
+import 'package:adsmanagement/features/ads/presention/widgets/form_widget.dart';
 import 'package:adsmanagement/shared/bloc/appbloc.dart';
 import 'package:adsmanagement/shared/bloc/appstatus.dart';
-import 'package:adsmanagement/shared/componants/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,11 +55,11 @@ class NotificationScreen extends StatelessWidget {
                           SizedBox(
                             height: 20.0,
                           ),
-                          defaultTextForm(
+                          FormWidget(
                             controller: titleController,
                             inputType: TextInputType.name,
                             prefix: IconlyLight.info_circle,
-                            lable: 'عنوان الاشعار',
+                            label: 'عنوان الاشعار',
                             validator:(val){
                               return validInput(
                                   val:val!,
@@ -70,11 +70,11 @@ class NotificationScreen extends StatelessWidget {
                           SizedBox(
                             height: 10.0,
                           ),
-                          defaultTextForm(
+                          FormWidget(
                             controller: contentController,
                             inputType: TextInputType.text,
                             prefix: Icons.newspaper,
-                            lable: 'محتوى الاشعار',
+                            label: 'محتوى الاشعار',
                             validator:(val){
                               return validInput(
                                   val:val!,

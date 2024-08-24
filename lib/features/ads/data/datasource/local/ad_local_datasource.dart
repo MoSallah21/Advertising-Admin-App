@@ -1,4 +1,9 @@
 import 'dart:convert';
+
+import 'package:adsmanagement/core/errors/exception.dart';
+import 'package:adsmanagement/features/ads/data/models/ad.dart';
+import 'package:dartz/dartz.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 abstract class AdLocalDatasource{
   Future<List<AdModel>> getCachedAds();
   Future<Unit>cacheAds(List<AdModel> adModels);

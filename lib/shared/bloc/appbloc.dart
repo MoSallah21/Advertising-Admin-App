@@ -3,7 +3,6 @@ import 'package:adsmanagement/data/services/ad_service.dart';
 import 'package:adsmanagement/data/services/category_service.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:adsmanagement/models/ads/ads.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';

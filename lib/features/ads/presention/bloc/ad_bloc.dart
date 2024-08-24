@@ -1,9 +1,7 @@
-import 'package:adphotos/core/errors/failures.dart';
-import 'package:adphotos/core/strings/failures.dart';
-import 'package:adphotos/features/ads/data/models/ad.dart';
-import 'package:adphotos/features/ads/domain/entities/ad.dart';
-import 'package:adphotos/features/ads/domain/usecases/get_all_ads.dart';
-import 'package:adphotos/features/auth/domain/entities/user.dart';
+import 'package:adsmanagement/core/errors/failures.dart';
+import 'package:adsmanagement/core/strings/failures.dart';
+import 'package:adsmanagement/features/ads/domain/entities/ad.dart';
+import 'package:adsmanagement/features/ads/domain/usecases/get_all_ads.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +9,6 @@ part 'ad_event.dart';
 part 'ad_status.dart';
 
 class AdBloc extends Bloc<AdEvent,AdState>{
-  Users? currentUser;
   final GetAllAdsUseCase getAllAds;
   // final UpdateLikesUseCase updateLikes;
 
@@ -27,10 +24,6 @@ class AdBloc extends Bloc<AdEvent,AdState>{
         final failureOrPosts =await getAllAds.call(event.catName);
         emit(_mapFailureOrPostsToState(failureOrPosts));
       }
-      // else if(event is UpdateLikesEvent){
-      //   await updateLikes.call(event.adModel, event.adId);
-      //   emit(AdsLikeSuccessState());
-      // }
     });
   }
   Stream<List<Ad>> get adsStream async* {

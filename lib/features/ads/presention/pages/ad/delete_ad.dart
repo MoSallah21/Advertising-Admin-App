@@ -1,8 +1,8 @@
+import 'package:adsmanagement/core/componants/components.dart';
+import 'package:adsmanagement/features/ads/data/models/ad.dart';
 import 'package:adsmanagement/layout/home/home.dart';
-import 'package:adsmanagement/models/ads/ads.dart';
 import 'package:adsmanagement/shared/bloc/appbloc.dart';
 import 'package:adsmanagement/shared/bloc/appstatus.dart';
-import 'package:adsmanagement/shared/componants/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +14,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 
 class DeleteScreen extends StatelessWidget {
-  int selectedIndex=0;
+   int selectedIndex=0;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppBloc, AppState>(
@@ -101,9 +101,9 @@ class DeleteScreen extends StatelessWidget {
                   if(selectedIndex==1){
                     adModel.sort((a, b) => a.startDate!.compareTo(b.startDate!));
                   }
-                  if(selectedIndex==2){
-                    adModel.sort((a, b) => b.likes.length.compareTo(a.likes.length));
-                  }
+                  // if(selectedIndex==2){
+                  //   adModel.sort((a, b) => b.likes.length.compareTo(a.likes.length));
+                  // }
                   else if(selectedIndex==0) {
                     adModel.sort((a, b) => b.startDate!.compareTo(a.startDate!));
                   }
@@ -214,11 +214,11 @@ Widget buildDeleteItem(AppBloc cubit, AdModel model,BuildContext context) =>
                             SizedBox(
                               width: 1,
                             ),
-                            Text(
-                              '${model.likes.length-1}',
-                              style: Theme.of(context).textTheme.bodyMedium,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                            // Text(
+                            //   '${model.likes.length-1}',
+                            //   style: Theme.of(context).textTheme.bodyMedium,
+                            //   overflow: TextOverflow.ellipsis,
+                            // ),
                           ],
                         ),
                         SizedBox(

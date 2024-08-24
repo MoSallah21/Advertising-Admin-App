@@ -1,18 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-
-import 'package:adsmanagement/models/ads/ads.dart';
 import 'dart:io';
 
 class AdRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Get ads
-  Stream<List<AdModel>> getAds() {
-    return _firestore.collection('ads').orderBy('startDate', descending: true).snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) => AdModel.fromJson(doc.data())).toList();
-    });
-  }
 
   // Add ad
   Future<void> addAd(AdModel model, File image) async {

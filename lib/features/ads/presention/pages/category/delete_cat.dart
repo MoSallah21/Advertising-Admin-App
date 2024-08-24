@@ -1,8 +1,8 @@
+import 'package:adsmanagement/core/componants/components.dart';
+import 'package:adsmanagement/features/ads/data/models/category.dart';
 import 'package:adsmanagement/layout/home/home.dart';
-import 'package:adsmanagement/models/category/category.dart';
 import 'package:adsmanagement/shared/bloc/appbloc.dart';
 import 'package:adsmanagement/shared/bloc/appstatus.dart';
-import 'package:adsmanagement/shared/componants/components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

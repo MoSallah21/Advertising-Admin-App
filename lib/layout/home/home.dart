@@ -1,11 +1,11 @@
-import 'package:adsmanagement/moudels/ad/ad.dart';
-import 'package:adsmanagement/moudels/ad/category.dart';
-import 'package:adsmanagement/moudels/delete/delete_cat.dart';
-import 'package:adsmanagement/moudels/delete/delete_ad.dart';
+import 'package:adsmanagement/core/componants/components.dart';
+import 'package:adsmanagement/features/ads/presention/pages/ad/ad.dart';
+import 'package:adsmanagement/features/ads/presention/pages/ad/delete_ad.dart';
+import 'package:adsmanagement/features/ads/presention/pages/category/category.dart';
+import 'package:adsmanagement/features/ads/presention/pages/category/delete_cat.dart';
 import 'package:adsmanagement/moudels/send_notification/notification_screen.dart';
 import 'package:adsmanagement/shared/bloc/appbloc.dart';
 import 'package:adsmanagement/shared/bloc/appstatus.dart';
-import 'package:adsmanagement/shared/componants/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

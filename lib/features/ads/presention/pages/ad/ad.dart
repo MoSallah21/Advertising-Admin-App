@@ -1,7 +1,8 @@
+import 'package:adsmanagement/core/componants/components.dart';
+import 'package:adsmanagement/core/vaild/vaild.dart';
+import 'package:adsmanagement/features/ads/presention/widgets/form_widget.dart';
 import 'package:adsmanagement/shared/bloc/appbloc.dart';
 import 'package:adsmanagement/shared/bloc/appstatus.dart';
-import 'package:adsmanagement/shared/componants/components.dart';
-import 'package:adsmanagement/shared/vaild/vaild.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +10,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:iconly/iconly.dart';
+
 import 'timepicker.dart';
 
 
 
 class AddAdvertising extends StatelessWidget {
- final GlobalKey formKey = GlobalKey<FormState>();
+ final  formKey = GlobalKey<FormState>();
  final TextEditingController nameController = TextEditingController();
  final TextEditingController numController = TextEditingController();
   String value='Stores';
@@ -65,11 +67,11 @@ class AddAdvertising extends StatelessWidget {
                         SizedBox(
                           height: 20.0,
                         ),
-                        defaultTextForm(
+                        FormWidget(
                           controller: nameController,
                           inputType: TextInputType.name,
                           prefix: IconlyLight.info_circle,
-                          lable: 'Place name',
+                          label: 'Place name',
                           validator:(val){
                             return validInput(
                                 val:val!,
@@ -80,11 +82,11 @@ class AddAdvertising extends StatelessWidget {
                         SizedBox(
                           height: 10.0,
                         ),
-                        defaultTextForm(
+                        FormWidget(
                           controller: numController,
                           inputType: TextInputType.phone,
                           prefix: Icons.phone,
-                          lable: 'Phone',
+                          label: 'Phone',
                           validator:(val){
                             return validInput(
                                 val:val!,

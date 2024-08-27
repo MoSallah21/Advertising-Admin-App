@@ -1,81 +1,45 @@
 {
   "project_info": {
-    "project_number": "433230157219",
-    "project_id": "fluttertc-8f5f5",
-    "storage_bucket": "fluttertc-8f5f5.appspot.com"
+    "project_number": "1025180788733",
+    "project_id": "ad-app-e68f9",
+    "storage_bucket": "ad-app-e68f9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:433230157219:android:01ff9be88b486c18a17616",
+        "mobilesdk_app_id": "1:1025180788733:android:f15755cefdabedc9635b94",
         "android_client_info": {
           "package_name": "com.example.adsmanagement"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "433230157219-b29oomb21jcivvpso6h00dej5jh7k17v.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.adsmanagement",
-            "certificate_hash": "e7ac20fb7fb57da0cdceaaea0a7e377333469816"
-          }
-        },
-        {
-          "client_id": "433230157219-v0i80v70658sbd7fd1n941ub7l4p4543.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD2RsStA05JqLmNuyi2rCCqZF8NCaaQjVk"
+          "current_key": "AIzaSyBrYzOOEfCuZSfyw7UoNzMSd-V0sBDZpCg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "433230157219-v0i80v70658sbd7fd1n941ub7l4p4543.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:433230157219:android:cf67da3456a2960da17616",
+        "mobilesdk_app_id": "1:1025180788733:android:190382ca3a65b199635b94",
         "android_client_info": {
           "package_name": "com.one.adphotos"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "433230157219-o3b3c95t2maqos0nb5i5oc2js2iq8to5.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.one.adphotos",
-            "certificate_hash": "e7ac20fb7fb57da0cdceaaea0a7e377333469816"
-          }
-        },
-        {
-          "client_id": "433230157219-v0i80v70658sbd7fd1n941ub7l4p4543.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD2RsStA05JqLmNuyi2rCCqZF8NCaaQjVk"
+          "current_key": "AIzaSyBrYzOOEfCuZSfyw7UoNzMSd-V0sBDZpCg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "433230157219-v0i80v70658sbd7fd1n941ub7l4p4543.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

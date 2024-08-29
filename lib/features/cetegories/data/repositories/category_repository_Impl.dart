@@ -4,21 +4,21 @@ import 'dart:io';
 import 'package:adsmanagement/core/errors/exception.dart';
 import 'package:adsmanagement/core/errors/failures.dart';
 import 'package:adsmanagement/core/network/local/remot/network_info.dart';
-import 'package:adsmanagement/features/ads/data/datasource/local/ad_local_datasource.dart';
-import 'package:adsmanagement/features/ads/data/datasource/remote/ad_remote_datasource.dart';
+import 'package:adsmanagement/data/repositories/ad_repository.dart';
 import 'package:adsmanagement/features/ads/data/models/ad.dart';
 import 'package:adsmanagement/features/ads/domain/entities/ad.dart';
-import 'package:adsmanagement/features/ads/domain/repositories/ad_repository.dart';
+import 'package:adsmanagement/features/cetegories/data/datasource/local/category_local_datasource.dart';
+import 'package:adsmanagement/features/cetegories/data/datasource/remote/category_remote_datasource.dart';
 import 'package:dartz/dartz.dart';
 typedef Future<Unit> DeleteOrAddOr();
 
 
-class AdRepositoryImpl implements AdRepository{
-  final AdRemoteDatasource remoteDatasource;
-  final AdLocalDatasource localDatasource;
+class CategoryRepositoryImpl implements AdRepository{
+  final CategoryRemoteDatasource remoteDatasource;
+  final CategoryLocalDatasource localDatasource;
   final NetworkInfo networkInfo;
 
-  AdRepositoryImpl({required this.remoteDatasource, required this.localDatasource, required this.networkInfo});
+  CategoryRepositoryImpl({required this.remoteDatasource, required this.localDatasource, required this.networkInfo});
   @override
   Future<Either<Failure, List<Ad>>> getAllAds(String catName)async {
     if (await networkInfo.isConnected) {

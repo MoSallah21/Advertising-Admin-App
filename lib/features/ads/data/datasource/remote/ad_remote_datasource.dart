@@ -13,15 +13,16 @@ abstract class AdRemoteDatasource{
   Future<Unit> addAd(AdModel model, File image);
 }
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
+final String AD_COLLECTION='ads';
+final String CATEGORY_NAME='catName';
 class AdRemoteDatasourceImpl implements AdRemoteDatasource{
   @override
 
   Future<List<AdModel>> getAllAds(String catName) async{
     try {
       final querySnapshot = await _firestore
-          .collection('ads')
-          .where('catName', isEqualTo: catName)
+          .collection(AD_COLLECTION)
+          .where(CATEGORY_NAME, isEqualTo: catName)
           .orderBy('startDate', descending: true)
           .get();
       if (querySnapshot.docs.isNotEmpty) {
@@ -45,7 +46,7 @@ class AdRemoteDatasourceImpl implements AdRemoteDatasource{
 
   @override
   Future<Unit> deleteAd(String adId)async {
-    final adsRef = _firestore.collection('ads');
+    final adsRef = _firestore.collection(AD_COLLECTION);
     final adDoc = adsRef.doc(adId);
       await adDoc.delete();
       return Future.value(unit);
@@ -54,11 +55,11 @@ class AdRemoteDatasourceImpl implements AdRemoteDatasource{
 
   // Add ad
   Future<Unit> addAd(AdModel model, File image) async {
-    final storageRef = firebase_storage.FirebaseStorage.instance.ref().child('ads/${Uri.file(image.path).pathSegments.last}');
+    final storageRef = firebase_storage.FirebaseStorage.instance.ref().child('${AD_COLLECTION}/${Uri.file(image.path).pathSegments.last}');
     final uploadTask = await storageRef.putFile(image);
     final imageUrl = await uploadTask.ref.getDownloadURL();
     model.image = imageUrl;
-    final adDoc = await _firestore.collection('ads').add(model.toJson());
+    final adDoc = await _firestore.collection(AD_COLLECTION).add(model.toJson());
     final adId = adDoc.id;
     model.adId = adId;
     await adDoc.update({'adId': adId});

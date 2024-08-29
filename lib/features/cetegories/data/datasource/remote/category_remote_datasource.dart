@@ -1,10 +1,8 @@
 import 'dart:io';
 
-import 'package:adsmanagement/features/ads/data/models/ad.dart';
 import 'package:adsmanagement/features/cetegories/data/models/category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import '../../../../../core/errors/exception.dart';
 
 abstract class CategoryRemoteDatasource{
@@ -14,19 +12,20 @@ abstract class CategoryRemoteDatasource{
   Future<Unit> addCategory(CategoryModel model, File image);
 }
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+final String COLLECTION_NAME='categories';
 
 class CategoryRemoteDatasourceImpl implements CategoryRemoteDatasource{
   @override
 
-  Future<List<AdModel>> getAllCategories() async{
+  Future<List<CategoryModel>> getAllCategories() async{
     try {
       final querySnapshot = await _firestore
-          .collection('ads')
-          .orderBy('startDate', descending: true)
+          .collection(COLLECTION_NAME)
+          .orderBy('categoryUid', descending: true)
           .get();
       if (querySnapshot.docs.isNotEmpty) {
         return querySnapshot.docs
-            .map((doc) => AdModel.fromJson(doc.data()))
+            .map((doc) => CategoryModel.fromJson(doc.data()))
             .toList();
       } else {
         throw Exception("No ads found for this category");
@@ -36,32 +35,18 @@ class CategoryRemoteDatasourceImpl implements CategoryRemoteDatasource{
     }
   }
 
-  // @override
-  // Future<Unit> updateLike(AdModel model, String adId)async {
-  //   await _firestore.collection("ads").doc(adId).update(model.toJson());
-  //   return Future.value(unit);
-  //
-  // }
 
   @override
-  Future<Unit> deleteAd(String adId)async {
-    final adsRef = _firestore.collection('ads');
-    final adDoc = adsRef.doc(adId);
-      await adDoc.delete();
-      return Future.value(unit);
-
+  Future<Unit> deleteCategory(String catId)async{
+    await _firestore.collection(COLLECTION_NAME).doc(catId).delete();
+    return Future.value(unit);
   }
-
-  // Add ad
-  Future<Unit> addAd(AdModel model, File image) async {
-    final storageRef = firebase_storage.FirebaseStorage.instance.ref().child('ads/${Uri.file(image.path).pathSegments.last}');
-    final uploadTask = await storageRef.putFile(image);
-    final imageUrl = await uploadTask.ref.getDownloadURL();
-    model.image = imageUrl;
-    final adDoc = await _firestore.collection('ads').add(model.toJson());
-    final adId = adDoc.id;
-    model.adId = adId;
-    await adDoc.update({'adId': adId});
+  @override
+  Future<Unit> addCategory(CategoryModel model, File image)async{
+    final documentRef = await _firestore.collection(COLLECTION_NAME).add(model.toJson());
+    final categoryId = model.categoryId;
+    final categoryUid = documentRef.id;
+    await documentRef.update({'categoryId': categoryId, 'categoryUid': categoryUid});
     return Future.value(unit);
   }
 

@@ -1,7 +1,6 @@
 import 'package:adsmanagement/core/componants/components.dart';
+import 'package:adsmanagement/features/cetegories/presention/bloc/cat_bloc.dart';
 import 'package:adsmanagement/layout/home/home.dart';
-import 'package:adsmanagement/shared/bloc/appbloc.dart';
-import 'package:adsmanagement/shared/bloc/appstatus.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +13,10 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 class DeleteCat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppBloc, AppState>(
+    return BlocConsumer<CatBloc, CatState>(
       listener: (BuildContext context, Object? state) {},
       builder: (BuildContext context, state) {
-        var cubit = AppBloc.get(context);
+        final CatBloc bloc = BlocProvider.of<CatBloc>(context);
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black,

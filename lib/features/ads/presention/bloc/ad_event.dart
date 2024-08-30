@@ -18,15 +18,16 @@ class RefreshAdsEvent extends AdEvent{
 }
 class AddAdEvent extends AdEvent{
   final Ad ad;
+  final File image;
 
-  AddAdEvent({required this.ad});
+  AddAdEvent({required this.ad,required this.image});
 
   @override
   List<Object?> get props => [ad];
 }
 
 class DeleteAdEvent extends AdEvent{
-  final int adId;
+  final String adId;
 
   DeleteAdEvent({required this.adId});
 

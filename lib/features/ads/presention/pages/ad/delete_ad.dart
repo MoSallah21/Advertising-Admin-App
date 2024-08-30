@@ -1,8 +1,7 @@
 import 'package:adsmanagement/core/componants/components.dart';
 import 'package:adsmanagement/features/ads/data/models/ad.dart';
+import 'package:adsmanagement/features/ads/presention/bloc/ad_bloc.dart';
 import 'package:adsmanagement/layout/home/home.dart';
-import 'package:adsmanagement/shared/bloc/appbloc.dart';
-import 'package:adsmanagement/shared/bloc/appstatus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,10 +16,9 @@ class DeleteScreen extends StatelessWidget {
    int selectedIndex=0;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppBloc, AppState>(
-      listener: (BuildContext context, Object? state) {},
+    return BlocBuilder<AdBloc, AdState>(
       builder: (BuildContext context, state) {
-        var cubit = AppBloc.get(context);
+        final AdBloc bloc = BlocProvider.of<AdBloc>(context);
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black,

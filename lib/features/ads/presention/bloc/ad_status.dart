@@ -35,24 +35,24 @@ class GetAllAdsErrorState extends AdState{
 class GetAllAdsLoadingState extends AdState{}
 
 
-
-
 class AppChangeSelectedRadioState extends AdState{}
 
 class AppChangeDropDownState extends AdState{}
 // add Ad
-class AppAddAdLoadingState  extends AdState{}
+class AddDeleteAdLoadingState  extends AdState{}
 
-class AppAddAdSuccessState  extends AdState{}
+class AddDeleteAdSuccessState  extends AdState{
+  final String message;
 
-class AppAddAdErrorState  extends AdState{}
+  AddDeleteAdSuccessState({required this.message});
+}
 
-// add Category
-class AppAddCategoryLoadingState  extends AdState{}
+class AddDeleteAdErrorState  extends AdState{
+  final String message;
 
-class AppAddCategorySuccessState  extends AdState{}
+  AddDeleteAdErrorState({required this.message});
+}
 
-class AppAddCategoryErrorState  extends AdState{}
 //pickAdPhoto
 class AppPickedPhotoSuccessState  extends AdState{}
 
@@ -68,17 +68,6 @@ class RestTimePicker  extends AdState{}
 class AppChangeSortState  extends AdState{}
 
 class SetTimePicker  extends AdState{}
-//delete Ad
-class AppDeleteAdErrorState  extends AdState{}
-
-class AppDeleteAdSuccessState  extends AdState{}
-
-//delete category
-
-class AppDeleteCatErrorState  extends AdState{}
-
-class AppDeleteCatSuccessState  extends AdState{}
-
 
 //notification
 class NotificationSuccessStatus extends AdState{}

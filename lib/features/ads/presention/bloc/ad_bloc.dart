@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:adsmanagement/core/errors/failures.dart';
 import 'package:adsmanagement/core/strings/failures.dart';
 import 'package:adsmanagement/features/ads/domain/entities/ad.dart';
+import 'package:adsmanagement/features/ads/domain/usecases/add_ad.dart';
+import 'package:adsmanagement/features/ads/domain/usecases/delete_ad.dart';
 import 'package:adsmanagement/features/ads/domain/usecases/get_all_ads.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -10,9 +14,10 @@ part 'ad_status.dart';
 
 class AdBloc extends Bloc<AdEvent,AdState>{
   final GetAllAdsUseCase getAllAds;
-  // final UpdateLikesUseCase updateLikes;
+  final AddAdtUseCase addAd;
+  final DeleteAdUseCase deleteAd;
 
-  AdBloc({required this.getAllAds}):super(AdsInitState()) {
+  AdBloc({required this.getAllAds,required this.addAd,required this.deleteAd}):super(AdsInitState()) {
     on<AdEvent>((event,emit)async{
       if(event is GetAllAdsEvent){
         emit(GetAllAdsLoadingState());
@@ -23,6 +28,16 @@ class AdBloc extends Bloc<AdEvent,AdState>{
         emit(GetAllAdsLoadingState());
         final failureOrPosts =await getAllAds.call(event.catName);
         emit(_mapFailureOrPostsToState(failureOrPosts));
+      }
+      else if(event is AddAdEvent){
+        emit(AddDeleteAdLoadingState());
+        final failureOrSuccess=await addAd(event.ad,event.image);
+        emit(_addOrDelete(failureOrSuccess,"Add category success"));
+      }
+      else if(event is DeleteAdEvent){
+        emit(AddDeleteAdLoadingState());
+        final failureOrSuccess=await deleteAd(event.adId);
+        emit(_addOrDelete(failureOrSuccess,"Delete category success"));
       }
     });
   }
@@ -53,19 +68,9 @@ class AdBloc extends Bloc<AdEvent,AdState>{
   }
 
 
-// Future<void> updateLike(AdModel model, String adId) async {
-//   try {
-//     // Use AdService to update like count and return the result
-//      await _adService.updateLike(model, adId);
-//   } catch (e) {
-//   }
-// }
-//
-//
-// void deleteAd(String adId, String endDate) {
-//   _adService.deleteAd(adId, endDate);
-// }
-//
-// void launchWhatsApp({required String phone, required String title}) async {
-//   Open.whatsApp(whatsAppNumber: phone, text: title);
-// }
+AdState _addOrDelete(Either<Failure,Unit> either,message){
+  return either.fold(
+        (failure)=>AddDeleteAdErrorState(message: _mapFailureToMessage(failure)),
+        (_)=> AddDeleteAdSuccessState(message:message ),
+  );
+}

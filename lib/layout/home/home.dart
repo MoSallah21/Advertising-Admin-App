@@ -1,11 +1,7 @@
 import 'package:adsmanagement/core/componants/components.dart';
 import 'package:adsmanagement/features/ads/presention/pages/ad/ad.dart';
 import 'package:adsmanagement/features/ads/presention/pages/ad/delete_ad.dart';
-import 'package:adsmanagement/features/ads/presention/pages/category/category.dart';
-import 'package:adsmanagement/features/ads/presention/pages/category/delete_cat.dart';
 import 'package:adsmanagement/moudels/send_notification/notification_screen.dart';
-import 'package:adsmanagement/shared/bloc/appbloc.dart';
-import 'package:adsmanagement/shared/bloc/appstatus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,8 +10,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppBloc, AppState>(
-      listener: (context, state) {},
+    return BlocBuilder<AppBloc, AppState>(
       builder: (context, state) {
         var cubit=AppBloc.get(context);
         return Scaffold(

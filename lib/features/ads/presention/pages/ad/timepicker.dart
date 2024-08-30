@@ -1,5 +1,4 @@
-import 'package:adsmanagement/shared/bloc/appbloc.dart';
-import 'package:adsmanagement/shared/bloc/appstatus.dart';
+import 'package:adsmanagement/features/ads/presention/bloc/ad_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -12,12 +11,12 @@ class TimePick extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return BlocConsumer<AppBloc, AppState>(
+    return BlocConsumer<AdBloc, AdState>(
       listener: (context, state) {
 
       },
       builder: (context, state) {
-        var cubit=AppBloc.get(context);
+         AdBloc bloc = BlocProvider.of<AdBloc>(context);
         return Scaffold(
           appBar: AppBar(title: Text('Choose time'),centerTitle: true,),
           body: Column(

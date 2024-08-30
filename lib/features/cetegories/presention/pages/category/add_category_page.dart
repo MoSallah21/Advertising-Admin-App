@@ -1,7 +1,7 @@
 import 'package:adsmanagement/core/vaild/vaild.dart';
 import 'package:adsmanagement/features/ads/presention/widgets/form_widget.dart';
-import 'package:adsmanagement/shared/bloc/appbloc.dart';
-import 'package:adsmanagement/shared/bloc/appstatus.dart';
+import 'package:adsmanagement/features/cetegories/domain/entities/category.dart';
+import 'package:adsmanagement/features/cetegories/presention/bloc/cat_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,15 +15,14 @@ class AddCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppBloc, AppState>(
+    return BlocConsumer<CatBloc, CatState>(
       listener: (context, state) {
-        if (state is AppAddCategorySuccessState) {
+        if (state is AddDeleteCategorySuccessState) {
           titleController.text = '';
-          AppBloc.get(context).categoryImage = null;
         }
       },
       builder: (context, state) {
-        var cubit = AppBloc.get(context);
+        final CatBloc bloc = BlocProvider.of<CatBloc>(context);
         return Scaffold(
           appBar: AppBar(
             title: Text('Add Category'),
@@ -94,7 +93,7 @@ class AddCategory extends StatelessWidget {
                             height: 30.0,
                           ),
                           ConditionalBuilder(
-                            condition: state is! AppAddCategoryLoadingState,
+                            condition: state is! AddDeleteCategoryLoadingState,
                             builder: (context) => Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -109,10 +108,13 @@ class AddCategory extends StatelessWidget {
                                     onPressed: () {
                                       if (formKey.currentState!.validate() &&
                                           cubit.categoryImage != null) {
-                                        cubit.addCategory(
-                                          name: titleController.text,
-                                          imagePath: cubit.categoryImage!.path,
-                                        );
+                                        bloc.add(AddCategoryEvent(
+                                            cat: Category(
+                                                title: ,
+                                                image: image,
+                                                categoryId: categoryId,
+                                                categoryUid: categoryUid),
+                                            image: image));
                                       } else {
                                         print('Please select an image.');
                                       }

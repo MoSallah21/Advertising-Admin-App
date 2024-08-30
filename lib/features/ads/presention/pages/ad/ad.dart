@@ -1,8 +1,7 @@
 import 'package:adsmanagement/core/componants/components.dart';
 import 'package:adsmanagement/core/vaild/vaild.dart';
+import 'package:adsmanagement/features/ads/presention/bloc/ad_bloc.dart';
 import 'package:adsmanagement/features/ads/presention/widgets/form_widget.dart';
-import 'package:adsmanagement/shared/bloc/appbloc.dart';
-import 'package:adsmanagement/shared/bloc/appstatus.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +22,9 @@ class AddAdvertising extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppBloc, AppState>(
+    return BlocConsumer<AdBloc, AdState>(
       listener: (context, state) {
-        if (state is AppAddAdSuccessState) {
+        if (state is AddDeleteAdSuccessState) {
           nameController.text='';
           numController.text='';
           AppBloc.get(context).selectedDate=DateTime.now().add(Duration(days: 1));
@@ -35,7 +34,7 @@ class AddAdvertising extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        var cubit=AppBloc.get(context);
+        final AdBloc bloc = BlocProvider.of<AdBloc>(context);
         return Scaffold(
           appBar: AppBar(title: Text('Add Advertisements'),centerTitle: true,),
           body: Container(
@@ -214,7 +213,7 @@ class AddAdvertising extends StatelessWidget {
                           height: 30.0,
                         ),
                         ConditionalBuilder(
-                          condition: state is! AppAddAdLoadingState,
+                          condition: state is! AddDeleteAdLoadingState,
                           builder: (context) => Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

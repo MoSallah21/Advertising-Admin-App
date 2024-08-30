@@ -16,6 +16,24 @@ class RefreshAdsEvent extends AdEvent{
 
   RefreshAdsEvent({required this.catName});
 }
+class AddAdEvent extends AdEvent{
+  final Ad ad;
+
+  AddAdEvent({required this.ad});
+
+  @override
+  List<Object?> get props => [ad];
+}
+
+class DeleteAdEvent extends AdEvent{
+  final int adId;
+
+  DeleteAdEvent({required this.adId});
+
+  @override
+  List<Object?> get props => [adId];
+}
+
 
 // class UpdateLikesEvent extends AdEvent{
 //   final AdModel adModel;

@@ -1,5 +1,4 @@
 import 'package:adsmanagement/core/componants/components.dart';
-import 'package:adsmanagement/features/ads/data/models/category.dart';
 import 'package:adsmanagement/layout/home/home.dart';
 import 'package:adsmanagement/shared/bloc/appbloc.dart';
 import 'package:adsmanagement/shared/bloc/appstatus.dart';

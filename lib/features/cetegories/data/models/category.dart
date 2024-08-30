@@ -1,4 +1,5 @@
-import 'package:adsmanagement/features/ads/domain/entities/category.dart';
+
+import 'package:adsmanagement/features/cetegories/domain/entities/category.dart';
 
 class CategoryModel extends Category {
   CategoryModel(

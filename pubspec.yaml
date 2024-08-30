@@ -37,7 +37,7 @@ dependencies:
   bloc: ^8.1.0
   flutter_bloc: ^8.1.1
   conditional_builder_null_safety: ^0.0.6
-  hexcolor: ^2.0.4
+  hexcolor: ^3.0.1
   iconly: ^1.0.1
   image_picker: ^0.8.5+3
   scroll_date_picker: ^3.7.0
